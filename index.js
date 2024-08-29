@@ -40,6 +40,10 @@ const productSchema = new Schema({
     type: Number,
     required: true
   },
+  category: {
+    type: String,
+    required: true
+  },
   image: {
 
     type:String,
@@ -61,8 +65,8 @@ app.get('/products', async (req, res) => {
 
 app.post('/post', async (req, res) => {
   try {
-    const {id, name, description, price,image } = req.body;
-    const product = new Product({ id,name, description, price, image });
+    const {id, name, description, price,category,image } = req.body;
+    const product = new Product({ id,name, description, price,category, image });
     await product.save();
     console.log(product)
     res.json({ message: 'Product added successfully' });
